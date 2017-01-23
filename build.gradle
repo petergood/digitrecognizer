@@ -1,0 +1,16 @@
+group 'pl.petergood.digitrecognizer'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.5
+mainClassName = 'pl.petergood.digitrecognizer.DigitRecognizer'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
