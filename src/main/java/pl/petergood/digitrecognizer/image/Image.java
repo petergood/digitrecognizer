@@ -7,14 +7,24 @@ import java.util.ArrayList;
  */
 public class Image {
 
-    private ArrayList<Byte> bytes;
+    private int width;
+    private int height;
 
-    public void appendByte(Byte b) {
-        bytes.add(b);
+    private int pixels[][];
+
+    public Image(int width, int height) {
+        this.width = width;
+        this.height = height;
+
+        pixels = new int[width][height];
     }
 
-    public ArrayList<Byte> getBytes() {
-        return bytes;
+    public void setColor(int x, int y, int RGB) {
+        pixels[x][y] = RGB;
+    }
+
+    public int getColor(int x, int y) {
+        return pixels[x][y];
     }
 
 }
