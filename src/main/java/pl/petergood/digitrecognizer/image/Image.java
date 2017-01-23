@@ -3,6 +3,7 @@ package pl.petergood.digitrecognizer.image;
 import pl.petergood.digitrecognizer.image.feature.Feature;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by petergood on 23/01/17.
@@ -14,7 +15,7 @@ public class Image {
 
     private int pixels[][];
 
-    private ArrayList<Feature> features = new ArrayList<>();
+    private HashMap<String, Feature> features = new HashMap<>();
 
     public Image(int width, int height) {
         this.width = width;
@@ -31,7 +32,11 @@ public class Image {
         return pixels[x][y];
     }
 
-    public ArrayList<Feature> getFeatures() {
+    public void setFeatures(HashMap<String, Feature> features) {
+        this.features = features;
+    }
+
+    public HashMap<String, Feature> getFeatures() {
         return features;
     }
 

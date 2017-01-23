@@ -11,6 +11,8 @@ import java.util.ArrayList;
  */
 public class DatasetImageLoader {
 
+    public static final int MIN_COLOR = 190;
+
     private FileInputStream inputStream;
 
     private int imageWidth;
@@ -35,12 +37,14 @@ public class DatasetImageLoader {
 
             for (int y = 0; y < imageHeight; y++) {
                 for (int x = 0; x < imageWidth; x++) {
-                    image.setColor(x, y, inputStream.read());
+                    int nextValue = inputStream.read();
+
+                    image.setColor(y, x, nextValue < MIN_COLOR ? 0 : nextValue);
                 }
             }
 
             FeatureExtractor featureExtractor = new FeatureExtractor(image);
-            featureExtractor.fillIn(0, 0);
+            image.setFeatures(featureExtractor.getFeatures());
 
             images.add(image);
         }
