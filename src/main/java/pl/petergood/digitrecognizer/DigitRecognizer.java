@@ -25,6 +25,15 @@ public class DigitRecognizer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        Image image = images.get(6);
+        for (int i = 0; i < image.getWidth(); i++) {
+            for (int j = 0; j < image.getHeight(); j++) {
+                System.out.print(image.getColor(j, i) + " ");
+            }
+
+            System.out.println();
+        }
     }
 
 }
