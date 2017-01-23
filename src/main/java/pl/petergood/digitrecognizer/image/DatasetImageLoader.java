@@ -1,5 +1,7 @@
 package pl.petergood.digitrecognizer.image;
 
+import pl.petergood.digitrecognizer.image.feature.FeatureExtractor;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,6 +38,9 @@ public class DatasetImageLoader {
                     image.setColor(x, y, inputStream.read());
                 }
             }
+
+            FeatureExtractor featureExtractor = new FeatureExtractor(image);
+            featureExtractor.fillIn(0, 0);
 
             images.add(image);
         }

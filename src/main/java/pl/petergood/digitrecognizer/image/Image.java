@@ -1,5 +1,7 @@
 package pl.petergood.digitrecognizer.image;
 
+import pl.petergood.digitrecognizer.image.feature.Feature;
+
 import java.util.ArrayList;
 
 /**
@@ -11,6 +13,8 @@ public class Image {
     private int height;
 
     private int pixels[][];
+
+    private ArrayList<Feature> features = new ArrayList<>();
 
     public Image(int width, int height) {
         this.width = width;
@@ -25,6 +29,18 @@ public class Image {
 
     public int getColor(int x, int y) {
         return pixels[x][y];
+    }
+
+    public ArrayList<Feature> getFeatures() {
+        return features;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
 }
