@@ -2,7 +2,6 @@ package pl.petergood.digitrecognizer.image.feature;
 
 import pl.petergood.digitrecognizer.image.Image;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -12,7 +11,9 @@ public class FeatureExtractor {
 
     public static final int BACKGROUND_FILL = 500;
     public static final int CLUSTERED_WHITE = 1;
-    public static final int MIN_AMOUNT_IN_CLUSER = 5;
+    public static final int OPEN_AREA_FILL = 2;
+
+    public static final int MIN_AMOUNT_IN_CLUSTER = 5;
 
     private Image image;
     private HashMap<String, Feature> features = new HashMap<>();
@@ -53,7 +54,7 @@ public class FeatureExtractor {
 
                     fillIn(x, y, CLUSTERED_WHITE, 0);
 
-                    if (pixelsFilledInCount > MIN_AMOUNT_IN_CLUSER) clusterAmount++;
+                    if (pixelsFilledInCount > MIN_AMOUNT_IN_CLUSTER) clusterAmount++;
                 }
             }
         }

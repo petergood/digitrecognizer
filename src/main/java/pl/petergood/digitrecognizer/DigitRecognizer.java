@@ -25,6 +25,17 @@ public class DigitRecognizer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        Image image = images.get(3);
+        for (int i = 0; i < image.getWidth(); i++) {
+            for (int j = 0; j < image.getHeight(); j++) {
+                System.out.print(image.getColor(i, j) + " ");
+            }
+
+            System.out.println();
+        }
+
+        System.out.println("Hole amount: " + image.getFeatures().get("holeAmount").getValue());
     }
 
 }
