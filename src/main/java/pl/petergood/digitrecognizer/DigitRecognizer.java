@@ -52,7 +52,7 @@ public class DigitRecognizer {
             i++;
         }
 
-        System.out.println("Accuracy: " + (1 - errors / testingImages.size()) * 100 + "%");
+        System.out.println("Accuracy: " + (1 - (double) errors / testingImages.size()) * 100 + "%");
     }
 
 }
