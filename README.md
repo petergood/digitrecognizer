@@ -6,6 +6,8 @@ The feature vector of each image is based on its pixels, which are 'unwrapped' i
 ![Drawing](http://i.imgur.com/ZupgfDx.png)
 0 represents background, and 1 represents any other color (ranging from 1 to 255).
 
+A better way to obtain features is to extract them directly from the shape (for example the amount of holes, open areas etc). Such an implementation is being developed in the _digit-features-v2_ branch.
+
 ## Building and running
 ```
 gradle run
