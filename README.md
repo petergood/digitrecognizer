@@ -6,6 +6,8 @@ Each image is 'unwrapped' pixel by pixel to form a one-dimensional array, which 
 
 ![eq](http://i.imgur.com/rBeRkuB.png)
 
+Before getting passed into the classifier, every image is pre-processed - pixels, whose color value is below a certain threshold, are filtered out.
+
 A better way to obtain features is to extract them directly from the shape (for example the amount of holes, open areas etc). Such an implementation is being developed in the _digit-features-v2_ branch.
 
 ## Building and running
