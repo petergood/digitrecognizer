@@ -11,7 +11,9 @@ import java.util.ArrayList;
  */
 public class DatasetImageLoader {
 
-    public static final int MIN_COLOR = 190;
+    public static final int DEFAULT_MIN_COLOR = 190;
+
+    private int minColor;
 
     private DataInputStream datasetInputStream;
     private DataInputStream tagInputStream;
@@ -19,6 +21,11 @@ public class DatasetImageLoader {
     public DatasetImageLoader(String datasetName, String tagFileName) throws FileNotFoundException {
         datasetInputStream = new DataInputStream(new FileInputStream(getClass().getResource(datasetName).getFile()));
         tagInputStream = new DataInputStream(new FileInputStream(getClass().getResource(tagFileName).getFile()));
+        minColor = DEFAULT_MIN_COLOR;
+    }
+
+    public void setMinColor(int minColor) {
+        this.minColor = minColor;
     }
 
     public ArrayList<Image> loadImages() throws IOException {
@@ -38,7 +45,7 @@ public class DatasetImageLoader {
                 for (int x = 0; x < imageWidth; x++) {
                     int nextValue = datasetInputStream.read();
 
-                    image.setColor(y, x, nextValue < MIN_COLOR ? 0 : nextValue);
+                    image.setColor(y, x, nextValue < minColor ? 0 : nextValue);
                 }
             }
 

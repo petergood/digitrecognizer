@@ -13,6 +13,10 @@ public class ImageClassifier extends KNearestClassifier<Image> {
 
     public static final int DEFAULT_K = 28; //sqrt(width*height) of the image
 
+    public ImageClassifier(int k) {
+        super(k);
+    }
+
     public ImageClassifier() {
         super(DEFAULT_K);
     }
