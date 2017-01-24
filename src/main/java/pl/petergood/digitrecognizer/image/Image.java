@@ -1,8 +1,5 @@
 package pl.petergood.digitrecognizer.image;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 /**
  * Created by petergood on 23/01/17.
  */
@@ -13,9 +10,12 @@ public class Image {
 
     private int pixels[][];
 
-    public Image(int width, int height) {
+    private String tag;
+
+    public Image(int width, int height, String tag) {
         this.width = width;
         this.height = height;
+        this.tag = tag;
 
         pixels = new int[width][height];
     }
@@ -34,6 +34,24 @@ public class Image {
 
     public int getHeight() {
         return height;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public int[] getFeatureVector() {
+        int[] featureVector = new int[width * height];
+        int i = 0;
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                featureVector[i] = pixels[x][y];
+                i++;
+            }
+        }
+
+        return featureVector;
     }
 
 }

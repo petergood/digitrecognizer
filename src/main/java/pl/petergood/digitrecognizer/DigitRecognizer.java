@@ -3,7 +3,6 @@ package pl.petergood.digitrecognizer;
 
 import pl.petergood.digitrecognizer.image.DatasetImageLoader;
 import pl.petergood.digitrecognizer.image.Image;
-import pl.petergood.digitrecognizer.image.MNISTDatasetLoaderFactory;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,7 +17,7 @@ public class DigitRecognizer {
         ArrayList<Image> images = new ArrayList<>();
 
         try {
-            DatasetImageLoader imageLoader = new MNISTDatasetLoaderFactory("/train-images").getDatasetImageLoader();
+            DatasetImageLoader imageLoader = new DatasetImageLoader("/train-images", "/train-labels");
             images = imageLoader.loadImages();
         } catch (FileNotFoundException e) {
             System.out.println("The specified file doesn't exist!");
@@ -33,6 +32,13 @@ public class DigitRecognizer {
             }
 
             System.out.println();
+        }
+
+        System.out.println("Tag: " + image.getTag());
+
+        int[] featureVector = image.getFeatureVector();
+        for (int i = 0; i < image.getWidth() * image.getHeight(); i++) {
+            System.out.print(featureVector[i] + " ");
         }
     }
 
