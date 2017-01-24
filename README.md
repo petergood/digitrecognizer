@@ -7,6 +7,6 @@ The feature vector of each image is based on its pixels, which are 'unwrapped' i
 0 represents background, and 1 represents any other color (ranging from 1 to 255).
 
 ## Building and running
-'''
+```
 gradle run
-'''
+```
