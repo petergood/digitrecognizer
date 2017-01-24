@@ -26,7 +26,7 @@ public class DigitRecognizer {
             e.printStackTrace();
         }
 
-        Image image = images.get(3);
+        Image image = images.get(0);
         for (int i = 0; i < image.getWidth(); i++) {
             for (int j = 0; j < image.getHeight(); j++) {
                 System.out.print(image.getColor(i, j) + " ");
@@ -34,8 +34,6 @@ public class DigitRecognizer {
 
             System.out.println();
         }
-
-        System.out.println("Hole amount: " + image.getFeatures().get("holeAmount").getValue());
     }
 
 }
