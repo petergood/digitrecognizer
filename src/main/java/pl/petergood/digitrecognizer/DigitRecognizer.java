@@ -15,21 +15,16 @@ import java.util.ArrayList;
 public class DigitRecognizer {
 
     public static void main(String args[]) {
-        int minColor = (args.length >= 1 ) ? Integer.parseInt(args[0]) : DatasetImageLoader.DEFAULT_MIN_COLOR;
-        System.out.println("Running classifier with minColor = " + minColor);
-
         ArrayList<Image> trainingImages = new ArrayList<>();
         ArrayList<Image> testingImages = new ArrayList<>();
 
         try {
             System.out.println("Loading training data...");
             DatasetImageLoader trainingImageLoader = new DatasetImageLoader("/train-images", "/train-labels");
-            trainingImageLoader.setMinColor(minColor);
             trainingImages = trainingImageLoader.loadImages();
 
             System.out.println("Loading testing data...");
             DatasetImageLoader testingImageLoader = new DatasetImageLoader("/testing-images", "/testing-labels");
-            testingImageLoader.setMinColor(minColor);
             testingImages = testingImageLoader.loadImages();
         } catch (FileNotFoundException e) {
             System.out.println("The specified file doesn't exist!");
