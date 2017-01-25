@@ -19,8 +19,8 @@ public class DatasetImageLoader {
     private DataInputStream tagInputStream;
 
     public DatasetImageLoader(String datasetName, String tagFileName) throws FileNotFoundException {
-        datasetInputStream = new DataInputStream(new FileInputStream(getClass().getResource(datasetName).getFile()));
-        tagInputStream = new DataInputStream(new FileInputStream(getClass().getResource(tagFileName).getFile()));
+        datasetInputStream = new DataInputStream(getClass().getResourceAsStream(datasetName));
+        tagInputStream = new DataInputStream(getClass().getResourceAsStream(tagFileName));
         minColor = DEFAULT_MIN_COLOR;
     }
 
