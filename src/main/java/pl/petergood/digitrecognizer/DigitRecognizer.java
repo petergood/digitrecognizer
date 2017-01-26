@@ -1,7 +1,6 @@
 package pl.petergood.digitrecognizer;
 
 
-import pl.petergood.digitrecognizer.classifier.ImageClassifier;
 import pl.petergood.digitrecognizer.image.DatasetImageLoader;
 import pl.petergood.digitrecognizer.image.Image;
 
@@ -15,44 +14,46 @@ import java.util.ArrayList;
 public class DigitRecognizer {
 
     public static void main(String args[]) {
+        int segmentAmount = 0;
+        int minK = 0;
+        int maxK = 0;
+
+        if (args.length >= 3) {
+            segmentAmount = Integer.parseInt(args[0]);
+            minK = Integer.parseInt(args[1]);
+            maxK = Integer.parseInt(args[2]);
+        } else {
+            System.exit(1);
+        }
+
         ArrayList<Image> trainingImages = new ArrayList<>();
         ArrayList<Image> testingImages = new ArrayList<>();
 
         try {
-            System.out.println("Loading training data...");
-            DatasetImageLoader trainingImageLoader = new DatasetImageLoader("/train-images", "/train-labels");
-            trainingImages = trainingImageLoader.loadImages();
+            DatasetImageLoader trainingImagesLoader = new DatasetImageLoader("/train-images", "/train-labels");
+            DatasetImageLoader testingImagesLoader = new DatasetImageLoader("/testing-images", "/testing-labels");
 
-            System.out.println("Loading testing data...");
-            DatasetImageLoader testingImageLoader = new DatasetImageLoader("/testing-images", "/testing-labels");
-            testingImages = testingImageLoader.loadImages();
+            trainingImages = trainingImagesLoader.loadImages();
+            testingImages = testingImagesLoader.loadImages();
         } catch (FileNotFoundException e) {
-            System.out.println("The specified file doesn't exist!");
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        ImageClassifier imageClassifier = new ImageClassifier();
-        imageClassifier.setTrainingData(trainingImages);
+        int offset = testingImages.size() / segmentAmount;
 
-        int errors = 0;
-        int i = 1;
+        for (int i = 0; i < segmentAmount; i++) {
+            DigitRecognizerThread recognizerThread = new DigitRecognizerThread.Builder()
+                    .setSegmentNumber(i)
+                    .setTestingImages(new ArrayList<>(testingImages.subList(i * offset, i * offset + offset)))
+                    .setTrainingImages(trainingImages)
+                    .setMinK(minK)
+                    .setMaxK(maxK)
+                    .build();
 
-        for (Image testingImage : testingImages) {
-            String predictedDigit = imageClassifier.predict(testingImage);
-
-            System.out.print("(" + i + " / " + testingImages.size() + ") Predicted " + predictedDigit + ", was " + testingImage.getTag());
-
-            if (!testingImage.getTag().equals(predictedDigit)) {
-                errors++;
-                System.out.print(" [Error]");
-            }
-
-            System.out.println();
-            i++;
+            recognizerThread.start();
         }
-
-        System.out.println("Accuracy: " + (1 - (double) errors / testingImages.size()) * 100 + "%");
     }
 
 }
