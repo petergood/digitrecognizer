@@ -5,5 +5,6 @@ FROM frekele/gradle
 ADD . digitrecognizer/
 
 RUN cd digitrecognizer && gradle build
+RUN chmod +x ./digitrecognizer/run.sh
 
-CMD java -jar digitrecognizer/build/libs/digitrecognizer-1.0-SNAPSHOT.jar 10 1 30
+CMD ./digitrecognizer/run.sh
