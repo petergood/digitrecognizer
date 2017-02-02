@@ -11,7 +11,7 @@ import java.util.HashMap;
  */
 public class ImageClassifier extends KNearestClassifier<Image> {
 
-    public static final int DEFAULT_K = 28; //sqrt(width*height) of the image
+    public static final int DEFAULT_K = 3;
 
     public ImageClassifier(int k) {
         super(k);

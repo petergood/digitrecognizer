@@ -8,7 +8,7 @@ Each image is 'unwrapped' pixel by pixel to form a one-dimensional array, which 
 
 A better way to obtain features is to extract them directly from the shape (for example the amount of holes, open areas etc). Such an implementation is being developed in the _digit-features-v2_ branch.
 
-![screenshot](http://i.imgur.com/p1YEzQ9.png)
+![screenshot](http://i.imgur.com/xpTPqjp.png)
 
 ## Building and running
 ```
